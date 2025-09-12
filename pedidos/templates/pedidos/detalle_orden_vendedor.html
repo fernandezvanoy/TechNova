@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Orden #{{ orden.id }} - Vendedor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-950 text-gray-200 font-['Roboto']">
+
+    <!-- Navbar  -->
+    {% include 'navbar.html' %}
+
+    <!-- Contenedor Principal -->
+    <main class="max-w-4xl mx-auto mt-16 p-8 bg-gray-900/80 backdrop-blur-md rounded-3xl shadow-2xl">
+        
+        <!-- Titulo de la Orden -->
+        <h2 class="text-3xl font-bold text-white mb-8 text-center">Orden #{{ orden.id }}</h2>
+
+        <!-- Tabla de Productos -->
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse text-left">
+                <thead>
+                    <tr class="bg-gray-800/80 text-gray-200">
+                        <th class="px-4 py-2 font-semibold">Producto</th>
+                        <th class="px-4 py-2 font-semibold">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr class="bg-gray-900/70 border-b border-gray-700 hover:bg-gray-800/80 transition">
+                        <td class="px-4 py-2">{{ item.producto.nombre }}</td>
+                        <td class="px-4 py-2">{{ item.cantidad }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Confirmación de Envio -->
+        <div class="mt-6 text-center">
+            {% if confirmacion.confirmado %}
+                <!-- Mensaje Si Ya Se Confirmó -->
+                <p class="text-green-500 font-bold text-lg">✅ Ya confirmaste esta orden.</p>
+            {% else %}
+                <!-- Formulario Para Confirmar el Envio -->
+                <form method="post" action="{% url 'confirmar_orden_vendedor' orden.id %}">
+                    {% csrf_token %}
+                    <button type="submit"
+                        class="px-6 py-3 bg-gray-700 text-white font-bold rounded-lg hover:bg-gray-600 transition">
+                        Confirmar envío
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+
+        <!-- Boton-->
+        <div class="text-center mt-6">
+            <a href="{% url 'ordenes_vendedor' %}"
+               class="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition inline-block">
+               Volver a órdenes pendientes
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>

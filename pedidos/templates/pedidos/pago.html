@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pago - Orden #{{ orden.id }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-950 text-gray-200 font-['Roboto']">
+
+    <!-- Fondo de imagen -->
+    <div class="fixed inset-0 -z-10">
+        <img src="{% static 'productos/img/setup3.png' %}" alt="Setup Gamer" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/70"></div> <!-- Overlay para oscurecer la imagen -->
+    </div>
+
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- Contenedor principal -->
+    <main class="max-w-4xl mx-auto mt-16 p-8 bg-gray-900/80 backdrop-blur-md rounded-3xl shadow-2xl">
+        
+       
+        <h1 class="text-3xl font-bold text-white mb-6 text-center">Pagar Orden #{{ orden.id }}</h1>
+
+        <!-- Total a Pagar -->
+        <p class="text-center text-gray-300 mb-8 font-semibold">Total a pagar: 💲{{ orden.total }}</p>
+
+        <!-- Formulario de seleccion de metodo de pago -->
+        <form method="post" class="space-y-6">
+            {% csrf_token %}  
+
+            <div class="flex flex-col">
+                <label for="metodo" class="mb-2 font-semibold text-gray-300">Método de Pago:</label>
+                <select name="metodo" id="metodo" required
+                    class="px-4 py-2 rounded-xl bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-white">
+                    <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                </select>
+            </div>
+
+            <!-- Boton de Enviar Formulario -->
+            <button type="submit"
+                class="w-full py-3 bg-gray-700 text-white font-bold rounded-xl hover:bg-gray-600 transition shadow-md">
+                Realizar Pago
+            </button>
+        </form>
+
+        <!-- Volver a la Lista de Ordenes -->
+        <div class="mt-6 text-center">
+            <a href="{% url 'lista_ordenes' %}"
+                class="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition inline-block">
+                 Volver a mis órdenes
+            </a>
+        </div>
+    </main>
+
+</body>
+
+</html>

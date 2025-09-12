@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ producto.nombre }} - TechNova</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'productos/css/detalle_producto.css' %}">
+
+</head>
+
+<body class="bg-black text-gray-200 font-['Roboto']">
+
+    <!-- Navbar  -->
+    {% include 'navbar.html' %}
+
+    <!-- Contenedor principal -->
+    <main class="max-w-6xl mx-auto p-6 md:p-10">
+
+        <!-- Producto -->
+        <div class="flex flex-col md:flex-row gap-10 bg-gray-900/90 rounded-3xl shadow-2xl p-6 md:p-10">
+            <!-- Imagen -->
+            <div class="flex-1 flex justify-center items-center">
+                {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}"
+                    class="rounded-2xl shadow-lg w-full max-w-md object-cover">
+                {% endif %}
+            </div>
+
+            <!-- Información del producto -->
+            <div class="flex-1 flex flex-col gap-4">
+                <h1 class="text-4xl font-bold text-white font-['Orbitron']">{{ producto.nombre }}</h1>
+                <p class="text-gray-300 text-lg">{{ producto.descripcion }}</p>
+                <p class="text-white font-bold text-2xl">💲 {{ producto.precio }}</p>
+                <p class="text-gray-400">Publicado por: <span class="text-white">{{ producto.vendedor.username }}</span>
+                </p>
+
+                <hr class="border-gray-700 my-4">
+
+                <!-- Agregar al carrito -->
+                {% if user.is_authenticated %}
+                <form method="post" class="flex gap-3 items-center">
+                    {% csrf_token %}
+                    <input type="number" name="cantidad" id="cantidad" value="1" min="1"
+                        class="w-20 px-3 py-2 rounded-xl bg-gray-800 border border-white/40 text-white focus:outline-none focus:ring-2 focus:ring-white">
+                    <button type="submit"
+                        class="px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition">Agregar
+                        al carrito 🛒</button>
+                </form>
+                {% else %}
+                <p><a href="{% url 'login' %}" class="text-white underline hover:text-gray-300">Inicia sesión</a> para
+                    comprar este producto.</p>
+                {% endif %}
+
+                <!-- Botones para modificar o eliminar producto -->
+                {% if user == producto.vendedor %}
+                <div class="flex gap-4 mt-4">
+                    <a href="{% url 'editar_producto' producto.pk %}"
+                        class="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition">Editar</a>
+                    <a href="{% url 'eliminar_producto1' producto.id %}"
+                        class="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition">
+                        Eliminar
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Reseñas -->
+        <section id="reviews" class="mt-10">
+            <h2 class="text-2xl font-bold text-white mb-4">Reseñas</h2>
+
+            {% if reseñas %}
+            <ul class="space-y-4">
+                {% for reseña in reseñas %}
+                <li class="bg-gray-900/90 p-4 rounded-xl shadow-md">
+                    <div class="flex justify-between items-center mb-2">
+                        <strong class="text-white">{{ reseña.usuario.username }}</strong>
+                        <div class="stars-display" aria-hidden="true">
+                            {% for i in "12345"|make_list %}
+                            <span
+                                class="star-inline {% if forloop.counter <= reseña.calificacion %}text-yellow-400{% else %}text-gray-600{% endif %}">★</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <p class="text-gray-300">{{ reseña.comentario }}</p>
+                    <small class="text-gray-500">{{ reseña.fecha|date:"d M Y H:i" }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-gray-400">No hay reseñas todavía.</p>
+            {% endif %}
+
+            <hr class="border-gray-700 my-6">
+
+            {% if user.is_authenticated %}
+            <div class="bg-gray-900/90 p-6 rounded-2xl shadow-md">
+                <h3 class="text-xl font-bold text-white mb-2">Deja tu reseña</h3>
+                <form method="post" id="reviewForm" class="space-y-4">
+                    {% csrf_token %}
+                    {{ form.calificacion }}
+
+                    <!-- Área de estrellas interactiva -->
+                    <div class="flex gap-1" role="radiogroup" aria-label="Calificación">
+                        {% for i in "12345"|make_list %}
+                        <button type="button"
+                            class="star w-8 h-8 flex items-center justify-center text-gray-400 hover:text-yellow-400 transition"
+                            data-value="{{ forloop.counter }}">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 .587l3.668 7.431L23 9.748l-5.5 5.358L18.335 24 12 20.013 5.665 24 6.5 15.106 1 9.748l7.332-1.73z" />
+                            </svg>
+                        </button>
+                        {% endfor %}
+                    </div>
+
+                    <div class="rating-info text-gray-400" aria-live="polite">Tu calificación: <span
+                            id="ratingValue">—</span></div>
+
+                    <div>
+                        {{ form.comentario }}
+                    </div>
+
+                    <button type="submit"
+                        class="px-6 py-3 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition">Enviar
+                        reseña</button>
+                </form>
+            </div>
+            {% else %}
+            <p class="text-gray-400 mt-4"><a href="{% url 'login' %}?next={{ request.path }}"
+                    class="underline hover:text-white">Inicia sesión</a> para dejar una reseña.</p>
+            {% endif %}
+        </section>
+
+        <div class="mt-10 text-center">
+            <a href="{% url 'home' %}" class="text-gray-400 hover:text-white underline">⬅ Volver al inicio</a>
+        </div>
+    </main>
+
+    {% include 'footbar.html' %}
+
+    <script src="{% static 'productos/js/detalle_producto.js' %}"></script>
+</body>
+
+</html>

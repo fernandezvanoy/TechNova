@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Carrito - TechNova</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-950 text-gray-200 font-['Roboto']">
+
+    <!-- Navbar -->
+    {% include 'navbar.html' %}
+
+    
+
+    <!-- Contenedor principal -->
+    <main class="max-w-6xl mx-auto p-6 md:p-10">
+        <h1 class="text-4xl font-bold text-white mb-8 text-center">🛒 Mi Carrito</h1>
+
+        {% if carrito.items.exists %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-900/90 text-gray-200">
+                        <th class="px-4 py-3">Producto</th>
+                        <th class="px-4 py-3">Cantidad</th>
+                        <th class="px-4 py-3">Subtotal</th>
+                        <th class="px-4 py-3">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    {% for item in carrito.items.all %}
+                    <tr class="hover:bg-gray-800/70 transition">
+                        <td class="px-4 py-3">{{ item.producto.nombre }}</td>
+                        <td class="px-4 py-3">{{ item.cantidad }}</td>
+                        <td class="px-4 py-3">💲 {{ item.subtotal }}</td>
+                        <td class="px-4 py-3">
+                            <form method="post" action="{% url 'eliminar_producto' item.id %}">
+                                {% csrf_token %}
+                                <button type="submit"
+                                    class="px-3 py-1 bg-red-600 text-white font-bold rounded hover:bg-red-500 transition">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Total del Carrito y Confirmar Compra -->
+        <div class="mt-6 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-xl font-bold text-white">Total: 💲 {{ carrito.total }}</p>
+            <form method="post" action="{% url 'confirmar_compra' %}" class="mt-4 md:mt-0">
+                {% csrf_token %}
+                <button type="submit"
+                    class="px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-500 transition">
+                    Confirmar Compra
+                </button>
+            </form>
+        </div>
+
+        {% else %}
+        <p class="text-center text-gray-400 text-lg mt-10">Tu carrito está vacío.</p>
+        {% endif %}
+
+        <!-- Boton -->
+        <div class="mt-10 text-center">
+            <a href="{% url 'home' %}" class="text-white hover:text-gray-300"> Seguir Comprando</a>
+        </div>
+    </main>
+
+    
+
+</body>
+
+</html>

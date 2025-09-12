@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Órdenes - TechNova</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-950 text-gray-200 font-['Roboto']">
+
+    <!-- Fondo de Imagen  -->
+    <div class="fixed inset-0 -z-10">
+        <img src="{% static 'productos/img/setup3.png' %}" alt="Setup Gamer" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/70"></div> <!-- Oscurece la imagen -->
+    </div>
+
+    <!-- Navbar-->
+    {% include 'navbar.html' %}
+
+    <h1 class="text-4xl font-bold text-center my-8">Mis Compras</h1>
+
+    <!-- Lista de Ordenes -->
+    {% if ordenes %}
+    <ul class="flex flex-col gap-4 max-w-4xl mx-auto">
+        {% for orden in ordenes %}
+        <li
+            class="bg-gray-900/80 p-6 rounded-2xl shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:scale-105 transition-transform">
+            
+            <!-- Informacion de la Orden -->
+            <div>
+                <p class="font-semibold text-lg">Orden #{{ orden.id }}</p>
+                <p>Estado: <span class="font-bold">{{ orden.estado }}</span></p>
+                <p>Total: ${{ orden.total }}</p>
+            </div>
+
+            <!-- Botones de Accion -->
+            <div class="flex gap-3 mt-4 md:mt-0">
+                <!-- Ver detalles siempre disponible -->
+                <a href="{% url 'detalle_orden' orden.id %}"
+                    class="px-4 py-2 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition">
+                    Ver detalle
+                </a>
+
+                <!-- Solo Si la Orden Está Pendiente -->
+                {% if orden.estado == "pendiente" %}
+                <a href="{% url 'eliminar_orden' orden.id %}"
+                    class="px-4 py-2 bg-red-600 text-white font-bold rounded-lg hover:bg-red-500 transition">
+                    Eliminar
+                </a>
+                <a href="{% url 'datos_envio' orden.id %}"
+                    class="px-4 py-2 bg-gray-800 text-white font-bold rounded-lg hover:bg-gray-700 transition">
+                    Continuar
+                </a>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <!-- Mensaje Si No Hay Ordenes -->
+    <p class="text-center text-gray-400 mt-12">No tienes órdenes aún.</p>
+    {% endif %}
+
+    <!-- Enlaces Finales -->
+    <div class="text-center mt-8">
+        <a href="{% url 'ver_carrito' %}"
+            class="px-6 py-3 bg-gray-800 text-white font-bold rounded-lg hover:bg-gray-700 transition inline-block mr-4">
+            🛒 Volver al carrito
+        </a>
+        <a href="{% url 'home' %}"
+            class="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition inline-block">
+            ⬅ Volver al inicio
+        </a>
+    </div>
+
+</body>
+
+</html>
