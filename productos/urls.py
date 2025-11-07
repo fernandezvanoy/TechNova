@@ -1,5 +1,10 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from . import views
+from .views import ProductoAdViewSet 
+
+router = DefaultRouter()
+router.register(r"api/anuncios", ProductoAdViewSet, basename="anuncios")
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -9,7 +14,12 @@ urlpatterns = [
     path('<int:pk>/eliminar/', views.eliminar_producto1, name='eliminar_producto1'),
     path("mis-productos/", views.mis_productos, name="mis_productos"),
     path('buscar/', views.buscar_productos, name='buscar_productos'),
+
+    # URLS API
+    path("", include(router.urls)),
     
 ]
+
+
 
 

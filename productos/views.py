@@ -133,3 +133,11 @@ def buscar_productos(request):
         'productos': productos,
         'busqueda': query
     })
+
+# IMPLEMENTACIOPN API
+from rest_framework import viewsets
+from .serializers import ProductoAdSerializer
+
+class ProductoAdViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Producto.objects.filter(stock__gt=0)
+    serializer_class = ProductoAdSerializer
