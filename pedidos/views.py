@@ -5,6 +5,9 @@ from pedidos.models import ItemOrden, ConfirmacionVendedor
 from django.db.models import Count
 from django.utils import timezone
 
+# i18n para mensajes cuando se usen (messages.success/info/error, etc.)
+from django.utils.translation import gettext as _
+from django.utils.translation import ngettext
 
 
 @login_required
@@ -15,7 +18,7 @@ def orden_actual(request):
 
 @login_required
 def lista_ordenes(request):
-    ordenes = Orden.objects.filter(comprador=request.user).order_by('-id')  
+    ordenes = Orden.objects.filter(comprador=request.user).order_by('-id')
     return render(request, "pedidos/lista.html", {"ordenes": ordenes})
 
 
@@ -24,11 +27,14 @@ def detalle_orden(request, pk):
     orden = get_object_or_404(Orden, pk=pk, comprador=request.user)
     return render(request, "pedidos/detalle_orden.html", {"orden": orden})
 
+
 @login_required
 def eliminar_orden(request, pk):
     orden = get_object_or_404(Orden, pk=pk, comprador=request.user, estado='pendiente')
     orden.delete()
+    # Si más adelante agregas messages, envuelve el texto: messages.success(request, _("Orden eliminada."))
     return redirect('lista_ordenes')
+
 
 @login_required
 def datos_envio(request, pk):
@@ -40,7 +46,6 @@ def datos_envio(request, pk):
         codigo_postal = request.POST.get('codigo_postal')
         metodo = request.POST.get('metodo')
 
-       
         envio, created = Envio.objects.get_or_create(orden=orden)
         envio.direccion = direccion
         envio.ciudad = ciudad
@@ -48,14 +53,12 @@ def datos_envio(request, pk):
         envio.metodo = metodo
         envio.save()
 
-
-        
         return redirect('pago', pk=orden.pk)
 
     return render(request, 'pedidos/datos_envio.html', {'orden': orden})
 
 
-# Simulacion de Pago
+# Simulación de Pago
 @login_required
 def pago(request, pk):
     orden = get_object_or_404(Orden, pk=pk, comprador=request.user)
@@ -68,22 +71,20 @@ def pago(request, pk):
             orden=orden,
             monto=monto,
             metodo=metodo,
-            codigo_transaccion="SIMULADO123"  
+            codigo_transaccion="SIMULADO123"  # Texto no visible; no requiere i18n
         )
 
-       
-        orden.estado = "pagada"
+        orden.estado = "pagada"  # Valor interno; no traducir
         orden.save()
 
-        
         vendedores = {item.producto.vendedor for item in orden.items.all()}
         for v in vendedores:
             ConfirmacionVendedor.objects.get_or_create(orden=orden, vendedor=v)
 
+        # Si agregas messages: messages.success(request, _("Pago registrado correctamente."))
         return redirect('lista_ordenes')
 
     return render(request, 'pedidos/pago.html', {'orden': orden})
-
 
 
 @login_required
@@ -95,17 +96,18 @@ def ordenes_vendedor(request):
     )
     return render(request, "pedidos/ordenes_vendedor.html", {"ordenes": ordenes})
 
+
 @login_required
 def detalle_orden_vendedor(request, pk):
     orden = get_object_or_404(Orden, pk=pk)
 
-    
     items_vendedor = orden.items.filter(producto__vendedor=request.user)
 
-    return render(request, "pedidos/detalle_orden_vendedor.html", {
-        "orden": orden,
-        "items": items_vendedor
-    })
+    return render(
+        request,
+        "pedidos/detalle_orden_vendedor.html",
+        {"orden": orden, "items": items_vendedor},
+    )
 
 
 @login_required
@@ -118,9 +120,10 @@ def confirmar_orden_vendedor(request, pk):
     confirmacion.fecha_confirmacion = timezone.now()
     confirmacion.save()
 
- 
+    # Cuando todos confirman, se marca como enviado (valor interno)
     if not orden.confirmaciones.filter(confirmado=False).exists():
         orden.estado = "enviado"
         orden.save()
 
+    # Ejemplo futuro con messages: messages.success(request, _("Confirmación registrada."))
     return redirect("ordenes_vendedor")

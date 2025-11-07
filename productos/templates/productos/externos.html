@@ -1,0 +1,128 @@
+<!-- products/templates/products/externos.html -->
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>TechNova - Productos Externos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bg-black text-gray-200">
+
+  <!-- Navbar Simple -->
+  <nav class="bg-gray-900 text-white p-4 border-b border-gray-700">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold text-white"> TechNova</a>
+      <div class="flex space-x-4">
+        <a href="/" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
+          Volver al Inicio
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BANNER PRODUCTOS EXTERNOS -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-purple-900 via-indigo-800 to-blue-900 opacity-80 blur-3xl"></div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-20 text-center">
+      <span class="bg-white/20 text-white px-4 py-2 rounded-full text-lg font-semibold tracking-wide">
+        🌐 API Externa
+      </span>
+      <h1 class="mt-6 text-5xl font-bold text-white">Tecnología en Tiempo Real</h1>
+      <p class="mt-6 max-w-2xl mx-auto text-gray-300 text-xl">
+        Productos obtenidos directamente de API externa. Tecnología real, precios actualizados.
+      </p>
+    </div>
+  </section>
+
+  <!-- Productos Externos -->
+  <div class="container mx-auto px-4 py-12">
+    <h2 class="text-center text-3xl font-bold mb-12 text-white">🚀 Productos de Tecnología</h2>
+    
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {% if productos_externos %}
+        {% for producto in productos_externos %}
+        <div class="bg-gray-900 rounded-2xl p-6 shadow-lg border border-gray-700 hover:scale-105 transition duration-300">
+          <!-- Imagen -->
+          <div class="h-64 bg-gray-800 rounded-xl mb-4 flex items-center justify-center p-4">
+            <img src="{{ producto.image }}" 
+                 alt="{{ producto.title }}" 
+                 class="max-h-52 max-w-full object-contain rounded-lg">
+          </div>
+          
+          <!-- Información -->
+          <h3 class="text-white text-lg font-bold mb-2 leading-tight">{{ producto.title }}</h3>
+          <p class="text-gray-400 text-sm mb-4 line-clamp-2">{{ producto.description }}</p>
+          
+          <!-- Precio y Rating -->
+          <div class="flex justify-between items-center mb-4">
+            <span class="text-2xl font-bold text-green-400">${{ producto.price }}</span>
+            <div class="flex items-center space-x-1 bg-gray-800 px-3 py-1 rounded-full">
+              <span class="text-yellow-400 text-sm">⭐</span>
+              <span class="text-white font-semibold text-sm">{{ producto.rating.rate }}</span>
+              <span class="text-gray-400 text-xs">({{ producto.rating.count }})</span>
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="flex gap-2">
+            <button onclick="alert('🔍 {{ producto.title|escapejs }}\n\n📝 {{ producto.description|escapejs }}\n\n💰 Precio: ${{ producto.price }}\n⭐ Rating: {{ producto.rating.rate }} ({{ producto.rating.count }} reviews)')"
+              class="flex-1 bg-white text-black font-semibold py-2 px-4 rounded-lg hover:bg-gray-200 transition text-sm">
+              Ver detalles
+            </button>
+            
+            <button onclick="alert('🛒 Este producto es de una API externa. Para comprarlo, necesitaríamos integrarlo con nuestro sistema local.')"
+              class="flex-1 bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 transition text-sm">
+              + Carrito
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <!-- Estado vacío -->
+        <div class="col-span-3 text-center py-16 bg-gray-900 rounded-2xl">
+          <div class="text-6xl mb-4">😕</div>
+          <h3 class="text-2xl font-bold text-white mb-4">API no disponible</h3>
+          <p class="text-gray-400 mb-6">No se pudieron cargar los productos externos en este momento.</p>
+          <a href="/" class="bg-white text-black font-semibold py-3 px-6 rounded-lg hover:bg-gray-200 transition">
+            Volver al inicio
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Información API -->
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <div class="bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-2xl p-8 border border-gray-600">
+      <h3 class="text-2xl font-bold text-white mb-4 text-center">ℹ️ Sobre esta integración</h3>
+      <div class="grid md:grid-cols-2 gap-6 text-gray-300">
+        <div class="text-center">
+          <div class="text-3xl mb-2"></div>
+          <h4 class="font-semibold text-white mb-2">API Externa</h4>
+          <p class="text-sm">Productos consumidos en tiempo real desde FakeStore API</p>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl mb-2"></div>
+          <h4 class="font-semibold text-white mb-2">Tecnología</h4>
+          <p class="text-sm">Demostración de consumo de APIs RESTful con Django</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Simple -->
+  <footer class="bg-gray-900 text-white py-8 border-t border-gray-700">
+    <div class="container mx-auto text-center">
+      <p class="text-lg font-semibold">TechNova Marketplace</p>
+      <p class="text-gray-400 mt-2">Consumiendo APIs externas en tiempo real</p>
+    </div>
+  </footer>
+
+</body>
+</html>

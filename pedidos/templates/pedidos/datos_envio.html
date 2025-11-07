@@ -1,10 +1,12 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:'es'|slice:':2' }}">
 
 <head>
     <meta charset="UTF-8">
-    <title>Datos de Envío - Orden #{{ orden.id }}</title>
+    <title>{% blocktrans %}Datos de Envío - Orden #{{ orden.id }}{% endblocktrans %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
@@ -13,7 +15,7 @@
 
     <!-- Imagen de Fondo -->
     <div class="fixed inset-0 -z-10">
-        <img src="{% static 'productos/img/setup3.png' %}" alt="Setup Gamer" class="w-full h-full object-cover">
+        <img src="{% static 'productos/img/setup3.png' %}" alt="{% trans 'Setup gamer' %}" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-black/70"></div> <!-- Oscurece la imagen para mejor contraste -->
     </div>
 
@@ -22,7 +24,9 @@
 
     <!-- Contenedor principal-->
     <main class="max-w-4xl mx-auto mt-16 p-8 bg-gray-900/80 backdrop-blur-md rounded-3xl shadow-2xl">
-        <h1 class="text-3xl font-bold text-white mb-6 text-center">Datos de Envío - Orden #{{ orden.id }}</h1>
+        <h1 class="text-3xl font-bold text-white mb-6 text-center">
+            {% blocktrans %}Datos de Envío - Orden #{{ orden.id }}{% endblocktrans %}
+        </h1>
 
         <!-- Formulario Para  Datos de Envio -->
         <form method="post" class="space-y-6">
@@ -30,39 +34,42 @@
 
             <!-- Dirección -->
             <div class="flex flex-col">
-                <label for="direccion" class="mb-2 font-semibold text-gray-300">Dirección:</label>
+                <label for="direccion" class="mb-2 font-semibold text-gray-300">{% trans 'Dirección:' %}</label>
                 <input type="text" name="direccion" id="direccion" required
+                    placeholder="{% trans 'Ingresa tu dirección' %}"
                     class="px-4 py-2 rounded-xl bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-white">
             </div>
 
             <!-- Ciudad -->
             <div class="flex flex-col">
-                <label for="ciudad" class="mb-2 font-semibold text-gray-300">Ciudad:</label>
+                <label for="ciudad" class="mb-2 font-semibold text-gray-300">{% trans 'Ciudad:' %}</label>
                 <input type="text" name="ciudad" id="ciudad" required
+                    placeholder="{% trans 'Ingresa tu ciudad' %}"
                     class="px-4 py-2 rounded-xl bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-white">
             </div>
 
             <!-- Codigo Postal -->
             <div class="flex flex-col">
-                <label for="codigo_postal" class="mb-2 font-semibold text-gray-300">Código Postal:</label>
+                <label for="codigo_postal" class="mb-2 font-semibold text-gray-300">{% trans 'Código postal:' %}</label>
                 <input type="text" name="codigo_postal" id="codigo_postal" required
+                    placeholder="{% trans 'Ingresa tu código postal' %}"
                     class="px-4 py-2 rounded-xl bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-white">
             </div>
 
             <!-- Metodo de Envio -->
             <div class="flex flex-col">
-                <label for="metodo" class="mb-2 font-semibold text-gray-300">Método de Envío:</label>
+                <label for="metodo" class="mb-2 font-semibold text-gray-300">{% trans 'Método de envío:' %}</label>
                 <select name="metodo" id="metodo" required
                     class="px-4 py-2 rounded-xl bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-white">
-                    <option value="Estándar">Estándar</option>
-                    <option value="Express">Express</option>
+                    <option value="Estándar">{% trans 'Estándar' %}</option>
+                    <option value="Express">{% trans 'Exprés' %}</option>
                 </select>
             </div>
 
             <!-- Boton de Envio del Formulario -->
             <button type="submit"
                 class="w-full py-3 bg-gray-700 text-white font-bold rounded-xl hover:bg-gray-600 transition shadow-md">
-                Continuar a Pago
+                {% trans 'Continuar al pago' %}
             </button>
         </form>
 
@@ -70,7 +77,7 @@
         <div class="mt-6 text-center">
             <a href="{% url 'lista_ordenes' %}"
                 class="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition inline-block">
-                ⬅ Volver a mis órdenes
+                ⬅ {% trans 'Volver a mis órdenes' %}
             </a>
         </div>
     </main>

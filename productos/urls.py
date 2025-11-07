@@ -18,6 +18,9 @@ urlpatterns = [
     path("buscar/", views.buscar_productos, name="buscar_productos"),
     path("buscar/filtros/", views.buscar_filtros, name="buscar_filtros"),
 
-    # API
+    # API NUESTRA
     path("", include(router.urls)),
+
+    # API EXTERNA
+    path('productos-externos/', views.productos_externos, name='productos_externos'),
 ]

@@ -1,0 +1,1044 @@
+# Languaje : en
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TechNova\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-07 06:10-0500\n"
+"PO-Revision-Date: 2025-11-07 05:30-0500\n"
+"Last-Translator: TechNova Bot <i18n@technova.local>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\carrito\models.py:10 .\pedidos\models.py:42
+msgid "Total"
+msgstr "Total"
+
+#: .\carrito\models.py:20 .\productos\models.py:62
+#: .\usuarios\templates\usuarios\login.html:43
+msgid "Usuario"
+msgstr "User"
+
+#: .\carrito\models.py:23 .\pedidos\models.py:28
+msgid "Fecha de creación"
+msgstr "Creation date"
+
+#: .\carrito\models.py:39
+#, python-format
+msgid "Carrito de %(usuario)s"
+msgstr "%(usuario)s's cart"
+
+#: .\carrito\models.py:42 .\carrito\models.py:52
+#: .\productos\templates\navbar.html:35 .\productos\templates\navbar.html:40
+msgid "Carrito"
+msgstr "Cart"
+
+#: .\carrito\models.py:43
+msgid "Carritos"
+msgstr "Carts"
+
+#: .\carrito\models.py:57 .\carrito\templates\carrito\carrito.html:28
+#: .\pedidos\models.py:72
+#: .\pedidos\templates\pedidos\detalle_orden_vendedor.html:32
+#: .\productos\models.py:44 .\productos\models.py:57
+msgid "Producto"
+msgstr "Product"
+
+#: .\carrito\models.py:60 .\carrito\templates\carrito\carrito.html:29
+#: .\pedidos\models.py:77
+#: .\pedidos\templates\pedidos\detalle_orden_vendedor.html:33
+msgid "Cantidad"
+msgstr "Quantity"
+
+#: .\carrito\models.py:72
+#, python-format
+msgid "%(cantidad)s x %(producto)s en el carrito de %(usuario)s"
+msgstr "%(cantidad)s x %(producto)s in %(usuario)s's cart"
+
+#: .\carrito\models.py:79
+msgid "Ítem de carrito"
+msgstr "Cart item"
+
+#: .\carrito\models.py:80
+msgid "Ítems de carrito"
+msgstr "Cart items"
+
+#: .\carrito\templates\carrito\carrito.html:7
+msgid "Mi Carrito - TechNova"
+msgstr "My Cart - TechNova"
+
+#: .\carrito\templates\carrito\carrito.html:21
+msgid "Mi Carrito"
+msgstr "My Cart"
+
+#: .\carrito\templates\carrito\carrito.html:30 .\pedidos\models.py:83
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#: .\carrito\templates\carrito\carrito.html:31
+#: .\pedidos\templates\pedidos\ordenes_vendedor.html:35
+msgid "Acciones"
+msgstr "Actions"
+
+#: .\carrito\templates\carrito\carrito.html:45
+#: .\pedidos\templates\pedidos\lista.html:59
+#: .\productos\templates\productos\eliminar_producto.html:36
+#: .\productos\templates\productos\mis_productos.html:49
+#: .\productos\templates\productos\producto_especifico.html:76
+msgid "Eliminar"
+msgstr "Remove"
+
+#: .\carrito\templates\carrito\carrito.html:58
+#, python-format
+msgid "Total: 💲 %(total)s"
+msgstr "Total: $ %(total)s"
+
+#: .\carrito\templates\carrito\carrito.html:64
+msgid "Confirmar compra"
+msgstr "Confirm purchase"
+
+#: .\carrito\templates\carrito\carrito.html:70 .\carrito\views.py:53
+msgid "Tu carrito está vacío."
+msgstr "Your cart is empty."
+
+#: .\carrito\templates\carrito\carrito.html:76
+msgid "Seguir comprando"
+msgstr "Continue shopping"
+
+#: .\carrito\views.py:33
+#, python-format
+msgid "“%(nombre)s” fue agregado al carrito (x%(cantidad)s)."
+msgstr "“%(nombre)s” was added to the cart (x%(cantidad)s)."
+
+#: .\carrito\views.py:45
+#, python-format
+msgid "Se eliminó “%(nombre)s” del carrito."
+msgstr "“%(nombre)s” was removed from the cart."
+
+#: .\carrito\views.py:71
+#, python-format
+msgid "¡Compra confirmada! Tu pedido #%(id)s fue creado correctamente."
+msgstr "Purchase confirmed! Your order #%(id)s was successfully created."
+
+#: .\pedidos\models.py:11 .\pedidos\models.py:139
+msgid "Pendiente"
+msgstr "Pending"
+
+#: .\pedidos\models.py:12
+msgid "Pagada"
+msgstr "Paid"
+
+#: .\pedidos\models.py:13
+msgid "Enviado"
+msgstr "Shipped"
+
+#: .\pedidos\models.py:14
+msgid "Completada"
+msgstr "Completed"
+
+#: .\pedidos\models.py:15
+msgid "Cancelada"
+msgstr "Cancelled"
+
+#: .\pedidos\models.py:18 .\pedidos\models.py:61 .\pedidos\models.py:97
+#: .\pedidos\models.py:144
+msgid "ID"
+msgstr "ID"
+
+#: .\pedidos\models.py:23
+msgid "Comprador"
+msgstr "Buyer"
+
+#: .\pedidos\models.py:24
+msgid "Usuario que realiza la compra."
+msgstr "User who makes the purchase."
+
+#: .\pedidos\models.py:29
+msgid "Fecha y hora en que se creó la orden."
+msgstr "Date and time when the order was created."
+
+#: .\pedidos\models.py:35
+msgid "Estado"
+msgstr "Status"
+
+#: .\pedidos\models.py:36
+msgid "Estado actual de la orden."
+msgstr "Current status of the order."
+
+#: .\pedidos\models.py:43
+msgid "Valor total de la orden."
+msgstr "Total value of the order."
+
+#: .\pedidos\models.py:47 .\pedidos\models.py:66 .\pedidos\models.py:102
+#: .\pedidos\models.py:149 .\pedidos\models.py:199
+msgid "Orden"
+msgstr "Order"
+
+#: .\pedidos\models.py:48
+msgid "Órdenes"
+msgstr "Orders"
+
+#: .\pedidos\models.py:67
+msgid "Orden a la que pertenece este ítem."
+msgstr "Order to which this item belongs."
+
+#: .\pedidos\models.py:73
+msgid "Producto asociado al ítem."
+msgstr "Product associated with the item."
+
+#: .\pedidos\models.py:78
+msgid "Cantidad del producto en la orden."
+msgstr "Product quantity in the order."
+
+#: .\pedidos\models.py:84
+msgid "Subtotal del ítem (precio × cantidad)."
+msgstr "Item subtotal (price × quantity)."
+
+#: .\pedidos\models.py:88
+msgid "Ítem de orden"
+msgstr "Order item"
+
+#: .\pedidos\models.py:89
+msgid "Ítems de orden"
+msgstr "Order items"
+
+#: .\pedidos\models.py:103
+msgid "Orden asociada al pago."
+msgstr "Order associated with the payment."
+
+#: .\pedidos\models.py:108
+msgid "Monto"
+msgstr "Amount"
+
+#: .\pedidos\models.py:109
+msgid "Monto pagado por la orden."
+msgstr "Amount paid for the order."
+
+#: .\pedidos\models.py:113
+msgid "Método de pago"
+msgstr "Payment method"
+
+#: .\pedidos\models.py:114
+msgid "Método utilizado para realizar el pago."
+msgstr "Method used to make the payment."
+
+#: .\pedidos\models.py:120
+msgid "Código de transacción"
+msgstr "Transaction code"
+
+#: .\pedidos\models.py:121
+msgid "Identificador de la transacción (si aplica)."
+msgstr "Transaction identifier (if applicable)."
+
+#: .\pedidos\models.py:125
+msgid "Fecha de pago"
+msgstr "Payment date"
+
+#: .\pedidos\models.py:126
+msgid "Fecha y hora en que se registró el pago."
+msgstr "Date and time when the payment was recorded."
+
+#: .\pedidos\models.py:130
+msgid "Pago"
+msgstr "Payment"
+
+#: .\pedidos\models.py:131
+msgid "Pagos"
+msgstr "Payments"
+
+#: .\pedidos\models.py:140
+msgid "En camino"
+msgstr "In transit"
+
+#: .\pedidos\models.py:141
+msgid "Entregado"
+msgstr "Delivered"
+
+#: .\pedidos\models.py:150
+msgid "Orden asociada al envío."
+msgstr "Order associated with the shipment."
+
+#: .\pedidos\models.py:154
+msgid "Dirección"
+msgstr "Address"
+
+#: .\pedidos\models.py:155
+msgid "Dirección de entrega."
+msgstr "Delivery address."
+
+#: .\pedidos\models.py:159
+msgid "Ciudad"
+msgstr "City"
+
+#: .\pedidos\models.py:160
+msgid "Ciudad de entrega."
+msgstr "Delivery city."
+
+#: .\pedidos\models.py:164
+msgid "Código postal"
+msgstr "Postal code"
+
+#: .\pedidos\models.py:165
+msgid "Código postal de la dirección."
+msgstr "Postal code of the address."
+
+#: .\pedidos\models.py:169
+msgid "Método de envío"
+msgstr "Shipping method"
+
+#: .\pedidos\models.py:170
+msgid "Método de envío seleccionado."
+msgstr "Selected shipping method."
+
+#: .\pedidos\models.py:176
+msgid "Estado del envío"
+msgstr "Shipping status"
+
+#: .\pedidos\models.py:177
+msgid "Estado actual del envío."
+msgstr "Current shipping status."
+
+#: .\pedidos\models.py:182
+msgid "Fecha estimada de entrega"
+msgstr "Estimated delivery date"
+
+#: .\pedidos\models.py:183
+msgid "Fecha estimada para la entrega (si aplica)."
+msgstr "Estimated delivery date (if applicable)."
+
+#: .\pedidos\models.py:187
+msgid "Envío"
+msgstr "Shipment"
+
+#: .\pedidos\models.py:188
+msgid "Envíos"
+msgstr "Shipments"
+
+#: .\pedidos\models.py:200
+msgid "Orden que requiere confirmación del vendedor."
+msgstr "Order that requires seller confirmation."
+
+#: .\pedidos\models.py:205 .\productos\models.py:33
+msgid "Vendedor"
+msgstr "Seller"
+
+#: .\pedidos\models.py:206
+msgid "Vendedor que confirma el envío."
+msgstr "Seller who confirms the shipment."
+
+#: .\pedidos\models.py:210
+msgid "Confirmado"
+msgstr "Confirmed"
+
+#: .\pedidos\models.py:211
+msgid "Indica si el vendedor ya confirmó."
+msgstr "Indicates whether the seller has already confirmed."
+
+#: .\pedidos\models.py:216
+msgid "Fecha de confirmación"
+msgstr "Confirmation date"
+
+#: .\pedidos\models.py:217
+msgid "Fecha y hora de la confirmación (si aplica)."
+msgstr "Date and time of confirmation (if applicable)."
+
+#: .\pedidos\models.py:222
+msgid "Confirmación de vendedor"
+msgstr "Seller confirmation"
+
+#: .\pedidos\models.py:223
+msgid "Confirmaciones de vendedores"
+msgstr "Seller confirmations"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:9
+#: .\pedidos\templates\pedidos\datos_envio.html:28
+#, python-format
+msgid "Datos de Envío - Orden #%(orden.id)s"
+msgstr "Shipping details - Order #%(orden.id)s"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:18
+#: .\pedidos\templates\pedidos\detalle_orden.html:18
+#: .\pedidos\templates\pedidos\lista.html:18
+#: .\pedidos\templates\pedidos\pago.html:18
+#: .\productos\templates\productos\crear_producto.html:20
+#: .\productos\templates\productos\editar_producto.html:20
+#: .\usuarios\templates\usuarios\login.html:17
+#: .\usuarios\templates\usuarios\registro.html:17
+msgid "Setup gamer"
+msgstr "Gamer setup"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:37
+msgid "Dirección:"
+msgstr "Address:"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:39
+msgid "Ingresa tu dirección"
+msgstr "Enter your address"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:45
+msgid "Ciudad:"
+msgstr "City:"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:47
+msgid "Ingresa tu ciudad"
+msgstr "Enter your city"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:53
+msgid "Código postal:"
+msgstr "Postal code:"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:55
+msgid "Ingresa tu código postal"
+msgstr "Enter your postal code"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:61
+msgid "Método de envío:"
+msgstr "Shipping method:"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:64
+msgid "Estándar"
+msgstr "Standard"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:65
+msgid "Exprés"
+msgstr "Express"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:72
+msgid "Continuar al pago"
+msgstr "Continue to payment"
+
+#: .\pedidos\templates\pedidos\datos_envio.html:80
+#: .\pedidos\templates\pedidos\detalle_orden.html:57
+#: .\pedidos\templates\pedidos\pago.html:62
+msgid "Volver a mis órdenes"
+msgstr "Back to my orders"
+
+#: .\pedidos\templates\pedidos\detalle_orden.html:9
+msgid "Detalle de la orden - TechNova"
+msgstr "Order details - TechNova"
+
+#: .\pedidos\templates\pedidos\detalle_orden.html:29
+#, python-format
+msgid "Detalle de la orden #%(order_id)s"
+msgstr "Order details #%(order_id)s"
+
+#: .\pedidos\templates\pedidos\detalle_orden.html:34
+#: .\pedidos\templates\pedidos\lista.html:40
+msgid "Estado:"
+msgstr "Status:"
+
+#: .\pedidos\templates\pedidos\detalle_orden.html:35
+#: .\pedidos\templates\pedidos\lista.html:43
+msgid "Total:"
+msgstr "Total:"
+
+#: .\pedidos\templates\pedidos\detalle_orden.html:39
+msgid "Productos en esta orden:"
+msgstr "Products in this order:"
+
+#: .\pedidos\templates\pedidos\detalle_orden.html:46
+#, python-format
+msgid "Cantidad: %(cantidad)s"
+msgstr "Quantity: %(cantidad)s"
+
+#: .\pedidos\templates\pedidos\detalle_orden.html:48
+#, python-format
+msgid "Subtotal: $%(subtotal)s"
+msgstr "Subtotal: $%(subtotal)s"
+
+#: .\pedidos\templates\pedidos\detalle_orden.html:61
+#: .\pedidos\templates\pedidos\lista.html:83
+#: .\pedidos\templates\pedidos\ordenes_vendedor.html:65
+#: .\productos\templates\productos\buscar.html:62
+#: .\productos\templates\productos\crear_producto.html:89
+#: .\productos\templates\productos\editar_producto.html:88
+#: .\productos\templates\productos\mis_productos.html:63
+#: .\productos\templates\productos\producto_especifico.html:157
+#: .\usuarios\templates\usuarios\login.html:64
+#: .\usuarios\templates\usuarios\registro.html:68
+msgid "Volver al inicio"
+msgstr "Back to home"
+
+#: .\pedidos\templates\pedidos\detalle_orden_vendedor.html:9
+#, python-format
+msgid "Detalle de orden #%(order_id)s - Vendedor"
+msgstr "Order details #%(order_id)s - Seller"
+
+#: .\pedidos\templates\pedidos\detalle_orden_vendedor.html:24
+#: .\pedidos\templates\pedidos\lista.html:37
+#, python-format
+msgid "Orden #%(order_id)s"
+msgstr "Order #%(order_id)s"
+
+#: .\pedidos\templates\pedidos\detalle_orden_vendedor.html:51
+msgid "Ya confirmaste esta orden."
+msgstr "You have already confirmed this order."
+
+#: .\pedidos\templates\pedidos\detalle_orden_vendedor.html:58
+msgid "Confirmar envío"
+msgstr "Confirm shipment"
+
+#: .\pedidos\templates\pedidos\detalle_orden_vendedor.html:68
+msgid "Volver a órdenes pendientes"
+msgstr "Back to pending orders"
+
+#: .\pedidos\templates\pedidos\lista.html:9
+msgid "Mis órdenes - TechNova"
+msgstr "My orders - TechNova"
+
+#: .\pedidos\templates\pedidos\lista.html:25
+#: .\productos\templates\navbar.html:36 .\productos\templates\navbar.html:41
+msgid "Mis compras"
+msgstr "My purchases"
+
+#: .\pedidos\templates\pedidos\lista.html:52
+#: .\productos\templates\productos\home.html:99
+msgid "Ver detalle"
+msgstr "View details"
+
+#: .\pedidos\templates\pedidos\lista.html:63
+msgid "Continuar"
+msgstr "Continue"
+
+#: .\pedidos\templates\pedidos\lista.html:72
+msgid "No tienes órdenes aún."
+msgstr "You don't have any orders yet."
+
+#: .\pedidos\templates\pedidos\lista.html:79
+msgid "Volver al carrito"
+msgstr "Back to cart"
+
+#: .\pedidos\templates\pedidos\ordenes_vendedor.html:9
+msgid "Órdenes pendientes - Vendedor"
+msgstr "Pending orders - Seller"
+
+#: .\pedidos\templates\pedidos\ordenes_vendedor.html:23
+#, python-format
+msgid "Órdenes para %(username)s"
+msgstr "Orders for %(username)s"
+
+#: .\pedidos\templates\pedidos\ordenes_vendedor.html:32
+msgid "Número de orden"
+msgstr "Order number"
+
+#: .\pedidos\templates\pedidos\ordenes_vendedor.html:33
+msgid "Total de productos tuyos"
+msgstr "Total of your products"
+
+#: .\pedidos\templates\pedidos\ordenes_vendedor.html:34
+msgid "Estado de la orden"
+msgstr "Order status"
+
+#: .\pedidos\templates\pedidos\ordenes_vendedor.html:48
+msgid "Ver detalles"
+msgstr "View details"
+
+#: .\pedidos\templates\pedidos\ordenes_vendedor.html:58
+msgid "No tienes órdenes pendientes."
+msgstr "You don't have any pending orders."
+
+#: .\pedidos\templates\pedidos\pago.html:9
+#, python-format
+msgid "Pago - Orden #%(order_id)s"
+msgstr "Payment - Order #%(order_id)s"
+
+#: .\pedidos\templates\pedidos\pago.html:29
+#, python-format
+msgid "Pagar orden #%(order_id)s"
+msgstr "Pay order #%(order_id)s"
+
+#: .\pedidos\templates\pedidos\pago.html:34
+#, python-format
+msgid "Total a pagar: 💲%(total)s"
+msgstr "Total to pay: $%(total)s"
+
+#: .\pedidos\templates\pedidos\pago.html:42
+msgid "Método de pago:"
+msgstr "Payment method:"
+
+#: .\pedidos\templates\pedidos\pago.html:45
+msgid "Tarjeta de crédito"
+msgstr "Credit card"
+
+#: .\pedidos\templates\pedidos\pago.html:46
+msgid "PayPal"
+msgstr "PayPal"
+
+#: .\pedidos\templates\pedidos\pago.html:47
+msgid "Transferencia bancaria"
+msgstr "Bank transfer"
+
+#: .\pedidos\templates\pedidos\pago.html:54
+msgid "Realizar pago"
+msgstr "Make payment"
+
+#: .\productos\forms.py:12 .\productos\forms.py:74 .\productos\models.py:40
+#: .\productos\templates\productos\buscar_filtros.html:31
+#: .\productos\templates\productos\crear_producto.html:68
+#: .\productos\templates\productos\editar_producto.html:67
+msgid "Categorías"
+msgstr "Categories"
+
+#: .\productos\forms.py:13
+msgid "Selecciona una o varias categorías para el producto"
+msgstr "Select one or more categories for the product"
+
+#: .\productos\forms.py:20
+#: .\productos\templates\productos\crear_producto.html:38
+#: .\productos\templates\productos\editar_producto.html:37
+msgid "Nombre"
+msgstr "Name"
+
+#: .\productos\forms.py:21 .\productos\models.py:9 .\productos\models.py:22
+#: .\productos\templates\productos\crear_producto.html:44
+#: .\productos\templates\productos\editar_producto.html:43
+msgid "Descripción"
+msgstr "Description"
+
+#: .\productos\forms.py:22 .\productos\forms.py:41 .\productos\models.py:23
+#: .\productos\templates\productos\crear_producto.html:51
+#: .\productos\templates\productos\editar_producto.html:50
+msgid "Precio"
+msgstr "Price"
+
+#: .\productos\forms.py:23 .\productos\models.py:24
+msgid "Cantidad disponible"
+msgstr "Available quantity"
+
+#: .\productos\forms.py:24 .\productos\models.py:25
+#: .\productos\templates\productos\crear_producto.html:62
+#: .\productos\templates\productos\editar_producto.html:61
+msgid "Imagen"
+msgstr "Image"
+
+#: .\productos\forms.py:27
+msgid "Ingresa el precio con dos decimales"
+msgstr "Enter the price with two decimals"
+
+#: .\productos\forms.py:28
+msgid "Número de unidades disponibles"
+msgstr "Number of available units"
+
+#: .\productos\forms.py:33 .\productos\models.py:21
+msgid "Nombre del producto"
+msgstr "Product name"
+
+#: .\productos\forms.py:37
+msgid "Descripción del producto"
+msgstr "Product description"
+
+#: .\productos\forms.py:45
+msgid "Cantidad en stock"
+msgstr "Stock quantity"
+
+#: .\productos\forms.py:59 .\productos\models.py:64
+#: .\productos\templates\productos\producto_especifico.html:119
+msgid "Calificación"
+msgstr "Rating"
+
+#: .\productos\forms.py:60 .\productos\models.py:65
+msgid "Comentario"
+msgstr "Comment"
+
+#: .\productos\forms.py:66
+msgid "Escribe tu opinión..."
+msgstr "Write your review..."
+
+#: .\productos\forms.py:78
+msgid "Selecciona una o varias categorías para filtrar los productos"
+msgstr "Select one or more categories to filter products"
+
+#: .\productos\models.py:8
+msgid "Nombre de la categoría"
+msgstr "Category name"
+
+#: .\productos\models.py:12
+msgid "Categoría de producto"
+msgstr "Product category"
+
+#: .\productos\models.py:13
+msgid "Categorías de producto"
+msgstr "Product categories"
+
+#: .\productos\models.py:45
+msgid "Productos"
+msgstr "Products"
+
+#: .\productos\models.py:66
+msgid "Fecha de publicación"
+msgstr "Publication date"
+
+#: .\productos\models.py:69
+msgid "Reseña"
+msgstr "Review"
+
+#: .\productos\models.py:70
+#: .\productos\templates\productos\producto_especifico.html:85
+msgid "Reseñas"
+msgstr "Reviews"
+
+#: .\productos\models.py:73
+#, python-format
+msgid "Reseña de %(usuario)s sobre %(producto)s"
+msgstr "Review by %(usuario)s about %(producto)s"
+
+#: .\productos\templates\navbar.html:15
+msgid "Buscar..."
+msgstr "Search..."
+
+#: .\productos\templates\navbar.html:19
+#: .\productos\templates\productos\home.html:79
+msgid "Buscar"
+msgstr "Search"
+
+#: .\productos\templates\navbar.html:26
+msgid "Hola"
+msgstr "Hi"
+
+#: .\productos\templates\navbar.html:27
+msgid "Cerrar sesión"
+msgstr "Log out"
+
+#: .\productos\templates\navbar.html:29
+msgid "Iniciar sesión"
+msgstr "Log in"
+
+#: .\productos\templates\navbar.html:30
+#: .\usuarios\templates\usuarios\registro.html:61
+msgid "Registrarse"
+msgstr "Sign up"
+
+#: .\productos\templates\navbar.html:34 .\productos\templates\navbar.html:39
+msgid "Pedidos"
+msgstr "Orders"
+
+#: .\productos\templates\navbar.html:37 .\productos\templates\navbar.html:42
+#: .\productos\templates\productos\mis_productos.html:23
+msgid "Mis productos"
+msgstr "My products"
+
+#: .\productos\templates\productos\buscar.html:10
+msgid "Resultados de búsqueda - TechNova"
+msgstr "Search results - TechNova"
+
+#: .\productos\templates\productos\buscar.html:24
+msgid "Resultados de búsqueda"
+msgstr "Search results"
+
+#: .\productos\templates\productos\buscar.html:29
+#, python-format
+msgid ""
+"Mostrando resultados para: \"<span class=\"text-white\">%(term)s</span>\""
+msgstr "Showing results for: \"<span class=\"text-white\">%(term)s</span>\""
+
+#: .\productos\templates\productos\buscar.html:45
+msgid "Sin imagen"
+msgstr "No image"
+
+#: .\productos\templates\productos\buscar.html:55
+msgid "No se encontraron productos"
+msgstr "No products found"
+
+#: .\productos\templates\productos\buscar.html:70
+#: .\productos\templates\productos\buscar_filtros.html:17
+msgid "Filtros avanzados"
+msgstr "Advanced filters"
+
+#: .\productos\templates\productos\buscar_filtros.html:8
+msgid "Filtros de búsqueda - TechNova"
+msgstr "Search filters - TechNova"
+
+#: .\productos\templates\productos\buscar_filtros.html:22
+#, python-format
+msgid "Término actual: \"<span class=\"text-white\">%(term)s</span>\""
+msgstr "Current term: \"<span class=\"text-white\">%(term)s</span>\""
+
+#: .\productos\templates\productos\buscar_filtros.html:51
+msgid "No hay categorías disponibles."
+msgstr "No categories available."
+
+#: .\productos\templates\productos\buscar_filtros.html:61
+msgid "Aplicar filtros"
+msgstr "Apply filters"
+
+#: .\productos\templates\productos\buscar_filtros.html:68
+msgid "Limpiar"
+msgstr "Clear"
+
+#: .\productos\templates\productos\buscar_filtros.html:76
+msgid "Volver a resultados"
+msgstr "Back to results"
+
+#: .\productos\templates\productos\crear_producto.html:10
+msgid "Nuevo producto - TechNova"
+msgstr "New product - TechNova"
+
+#: .\productos\templates\productos\crear_producto.html:30
+msgid "Nuevo producto"
+msgstr "New product"
+
+#: .\productos\templates\productos\crear_producto.html:55
+#: .\productos\templates\productos\editar_producto.html:54
+msgid "Stock"
+msgstr "Stock"
+
+#: .\productos\templates\productos\crear_producto.html:83
+msgid "Publicar producto"
+msgstr "Publish product"
+
+#: .\productos\templates\productos\editar_producto.html:10
+msgid "Editar producto - TechNova"
+msgstr "Edit product - TechNova"
+
+#: .\productos\templates\productos\editar_producto.html:29
+#, python-format
+msgid "Editar %(name)s"
+msgstr "Edit %(name)s"
+
+#: .\productos\templates\productos\editar_producto.html:82
+msgid "Guardar cambios"
+msgstr "Save changes"
+
+#: .\productos\templates\productos\eliminar_producto.html:10
+#, python-format
+msgid "Eliminar %(name)s - TechNova"
+msgstr "Delete %(name)s - TechNova"
+
+#: .\productos\templates\productos\eliminar_producto.html:26
+#, python-format
+msgid "Eliminar %(name)s"
+msgstr "Delete %(name)s"
+
+#: .\productos\templates\productos\eliminar_producto.html:29
+msgid "¿Seguro que quieres eliminar este producto?"
+msgstr "Are you sure you want to delete this product?"
+
+#: .\productos\templates\productos\eliminar_producto.html:42
+msgid "Volver a mis productos"
+msgstr "Back to my products"
+
+#: .\productos\templates\productos\home.html:8
+msgid "TechNova - Marketplace"
+msgstr "TechNova - Marketplace"
+
+#: .\productos\templates\productos\home.html:36
+msgid "Producto destacado"
+msgstr "Featured product"
+
+#: .\productos\templates\productos\home.html:43
+msgid "Ver más"
+msgstr "View more"
+
+#: .\productos\templates\productos\home.html:53
+#: .\productos\templates\productos\home.html:59
+#: .\productos\templates\productos\home.html:109
+#: .\productos\templates\productos\home.html:115
+msgid "+ Carrito"
+msgstr "+ Cart"
+
+#: .\productos\templates\productos\home.html:70
+msgid "Bienvenido a TechNova"
+msgstr "Welcome to TechNova"
+
+#: .\productos\templates\productos\home.html:73
+msgid ""
+"El marketplace gamer donde encuentras lo último en tecnología, hardware y "
+"accesorios de alto rendimiento."
+msgstr ""
+"The gamer marketplace where you can find the latest in technology, hardware, "
+"and high-performance accessories."
+
+#: .\productos\templates\productos\home.html:76
+msgid "Buscar productos gamer..."
+msgstr "Search gamer products..."
+
+#: .\productos\templates\productos\home.html:85
+msgid "Productos disponibles"
+msgstr "Available products"
+
+#: .\productos\templates\productos\home.html:122
+msgid "No hay productos disponibles."
+msgstr "No products available."
+
+#: .\productos\templates\productos\home.html:132
+msgid "Sugerencias"
+msgstr "Suggestions"
+
+#: .\productos\templates\productos\home.html:138
+msgid "¿Qué buscas?"
+msgstr "What are you looking for?"
+
+#: .\productos\templates\productos\home.html:139
+msgid "Ir"
+msgstr "Go"
+
+#: .\productos\templates\productos\home.html:142
+msgid ""
+"Tip: también puedes filtrar por presupuesto y categorías con el botón de "
+"filtros."
+msgstr ""
+"Tip: you can also filter by budget and categories using the filters button."
+
+#: .\productos\templates\productos\home.html:174
+msgid "No encontré coincidencias."
+msgstr "No matches found."
+
+#: .\productos\templates\productos\mis_productos.html:9
+msgid "Mis productos - TechNova"
+msgstr "My products - TechNova"
+
+#: .\productos\templates\productos\mis_productos.html:26
+msgid "Crear nuevo producto"
+msgstr "Create new product"
+
+#: .\productos\templates\productos\mis_productos.html:45
+#: .\productos\templates\productos\producto_especifico.html:72
+msgid "Editar"
+msgstr "Edit"
+
+#: .\productos\templates\productos\mis_productos.html:55
+msgid "No has publicado ningún producto aún."
+msgstr "You haven't published any products yet."
+
+#: .\productos\templates\productos\producto_especifico.html:10
+#, python-format
+msgid "%(name)s - TechNova"
+msgstr "%(name)s - TechNova"
+
+#: .\productos\templates\productos\producto_especifico.html:42
+msgid "Publicado por:"
+msgstr "Published by:"
+
+#: .\productos\templates\productos\producto_especifico.html:55
+msgid "Agregar al carrito"
+msgstr "Add to cart"
+
+#: .\productos\templates\productos\producto_especifico.html:61
+#: .\productos\templates\productos\producto_especifico.html:149
+#: .\usuarios\templates\usuarios\login.html:31
+msgid "Inicia sesión"
+msgstr "Log in"
+
+#: .\productos\templates\productos\producto_especifico.html:63
+msgid "para comprar este producto."
+msgstr "to buy this product."
+
+#: .\productos\templates\productos\producto_especifico.html:106
+msgid "No hay reseñas todavía."
+msgstr "There are no reviews yet."
+
+#: .\productos\templates\productos\producto_especifico.html:113
+msgid "Deja tu reseña"
+msgstr "Leave your review"
+
+#: .\productos\templates\productos\producto_especifico.html:133
+msgid "Tu calificación: <span id=\"ratingValue\">—</span>"
+msgstr "Your rating: <span id=\"ratingValue\">—</span>"
+
+#: .\productos\templates\productos\producto_especifico.html:142
+msgid "Enviar reseña"
+msgstr "Submit review"
+
+#: .\productos\templates\productos\producto_especifico.html:151
+msgid "para dejar una reseña."
+msgstr "to leave a review."
+
+#: .\usuarios\forms.py:12
+msgid "Nombre de usuario"
+msgstr "Username"
+
+#: .\usuarios\forms.py:13
+msgid "Correo electrónico"
+msgstr "Email"
+
+#: .\usuarios\forms.py:14
+msgid "Rol"
+msgstr "Role"
+
+#: .\usuarios\forms.py:15 .\usuarios\templates\usuarios\login.html:50
+msgid "Contraseña"
+msgstr "Password"
+
+#: .\usuarios\forms.py:16
+msgid "Confirmar contraseña"
+msgstr "Confirm password"
+
+#: .\usuarios\forms.py:19
+msgid "Escribe tu nombre de usuario."
+msgstr "Enter your username."
+
+#: .\usuarios\forms.py:20
+msgid "Ingresa tu correo electrónico válido."
+msgstr "Enter a valid email address."
+
+#: .\usuarios\forms.py:21
+msgid "Selecciona el rol correspondiente."
+msgstr "Select the appropriate role."
+
+#: .\usuarios\forms.py:22
+msgid "Tu contraseña debe tener al menos 8 caracteres."
+msgstr "Your password must contain at least 8 characters."
+
+#: .\usuarios\forms.py:23
+msgid "Repite la contraseña para confirmar."
+msgstr "Repeat the password to confirm."
+
+#: .\usuarios\forms.py:30
+msgid "Tu nombre de usuario"
+msgstr "Your username"
+
+#: .\usuarios\forms.py:33
+msgid "Tu correo electrónico"
+msgstr "Your email"
+
+#: .\usuarios\forms.py:36
+msgid "Selecciona tu rol"
+msgstr "Select your role"
+
+#: .\usuarios\forms.py:39 .\usuarios\templates\usuarios\login.html:51
+msgid "Tu contraseña"
+msgstr "Your password"
+
+#: .\usuarios\forms.py:42
+msgid "Confirma tu contraseña"
+msgstr "Confirm your password"
+
+#: .\usuarios\templates\usuarios\login.html:9
+msgid "Iniciar sesión - TechNova"
+msgstr "Log in - TechNova"
+
+#: .\usuarios\templates\usuarios\login.html:26
+#: .\usuarios\templates\usuarios\registro.html:26
+msgid "Logo de TechNova"
+msgstr "TechNova logo"
+
+#: .\usuarios\templates\usuarios\login.html:34
+msgid "Ingresa tus datos para acceder a tu cuenta TechNova"
+msgstr "Enter your details to access your TechNova account"
+
+#: .\usuarios\templates\usuarios\login.html:44
+msgid "Tu usuario"
+msgstr "Your username"
+
+#: .\usuarios\templates\usuarios\login.html:57
+msgid "Entrar"
+msgstr "Enter"
+
+#: .\usuarios\templates\usuarios\registro.html:9
+msgid "Registro - TechNova"
+msgstr "Sign up - TechNova"
+
+#: .\usuarios\templates\usuarios\registro.html:31
+msgid "Crear cuenta"
+msgstr "Create account"
+
+#: .\usuarios\templates\usuarios\registro.html:34
+msgid "Completa los datos para registrarte en TechNova"
+msgstr "Fill in the information to register in TechNova"

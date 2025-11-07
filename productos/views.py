@@ -187,10 +187,40 @@ def buscar_filtros(request):
 
 
 
-# IMPLEMENTACIOPN API
+# IMPLEMENTACIOPN API DE NOSOTROS
 from rest_framework import viewsets
 from .serializers import ProductoAdSerializer
 
 class ProductoAdViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Producto.objects.filter(stock__gt=0)
     serializer_class = ProductoAdSerializer
+
+
+# API EXTERNA IMPLEMENTACION
+# products/views.py
+from django.shortcuts import render
+import requests
+import json
+
+def obtener_productos_externos():
+    """Obtiene productos de tecnología de API externa"""
+    try:
+        response = requests.get('https://fakestoreapi.com/products/category/electronics', timeout=5)
+        if response.status_code == 200:
+            return response.json()
+        return []
+    except:
+        return []
+
+def productos_externos(request):
+    """Vista para productos externos usando template"""
+    productos = obtener_productos_externos()
+    productos = productos[:6] if productos else []
+    
+    # Convertir a JSON seguro para el template
+    productos_json = json.dumps(productos) if productos else '[]'
+    
+    return render(request, 'productos/externos.html', {
+        'productos_externos': productos,
+        'productos_externos_json': productos_json  # Para el JavaScript
+    })

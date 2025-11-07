@@ -1,10 +1,12 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:'es'|slice:':2' }}">
 
 <head>
     <meta charset="UTF-8">
-    <title>Pago - Orden #{{ orden.id }}</title>
+    <title>{% blocktrans with order_id=orden.id %}Pago - Orden #{{ order_id }}{% endblocktrans %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
@@ -13,7 +15,7 @@
 
     <!-- Fondo de imagen -->
     <div class="fixed inset-0 -z-10">
-        <img src="{% static 'productos/img/setup3.png' %}" alt="Setup Gamer" class="w-full h-full object-cover">
+        <img src="{% static 'productos/img/setup3.png' %}" alt="{% trans 'Setup gamer' %}" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-black/70"></div> <!-- Overlay para oscurecer la imagen -->
     </div>
 
@@ -23,38 +25,41 @@
     <!-- Contenedor principal -->
     <main class="max-w-4xl mx-auto mt-16 p-8 bg-gray-900/80 backdrop-blur-md rounded-3xl shadow-2xl">
         
-       
-        <h1 class="text-3xl font-bold text-white mb-6 text-center">Pagar Orden #{{ orden.id }}</h1>
+        <h1 class="text-3xl font-bold text-white mb-6 text-center">
+            {% blocktrans with order_id=orden.id %}Pagar orden #{{ order_id }}{% endblocktrans %}
+        </h1>
 
         <!-- Total a Pagar -->
-        <p class="text-center text-gray-300 mb-8 font-semibold">Total a pagar: 💲{{ orden.total }}</p>
+        <p class="text-center text-gray-300 mb-8 font-semibold">
+            {% blocktrans with total=orden.total %}Total a pagar: 💲{{ total }}{% endblocktrans %}
+        </p>
 
-        <!-- Formulario de seleccion de metodo de pago -->
+        <!-- Formulario de selección de método de pago -->
         <form method="post" class="space-y-6">
             {% csrf_token %}  
 
             <div class="flex flex-col">
-                <label for="metodo" class="mb-2 font-semibold text-gray-300">Método de Pago:</label>
+                <label for="metodo" class="mb-2 font-semibold text-gray-300">{% trans "Método de pago:" %}</label>
                 <select name="metodo" id="metodo" required
                     class="px-4 py-2 rounded-xl bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-white">
-                    <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
-                    <option value="PayPal">PayPal</option>
-                    <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                    <option value="Tarjeta de Crédito">{% trans "Tarjeta de crédito" %}</option>
+                    <option value="PayPal">{% trans "PayPal" %}</option>
+                    <option value="Transferencia Bancaria">{% trans "Transferencia bancaria" %}</option>
                 </select>
             </div>
 
-            <!-- Boton de Enviar Formulario -->
+            <!-- Botón de envío del formulario -->
             <button type="submit"
                 class="w-full py-3 bg-gray-700 text-white font-bold rounded-xl hover:bg-gray-600 transition shadow-md">
-                Realizar Pago
+                {% trans "Realizar pago" %}
             </button>
         </form>
 
-        <!-- Volver a la Lista de Ordenes -->
+        <!-- Volver a la lista de órdenes -->
         <div class="mt-6 text-center">
             <a href="{% url 'lista_ordenes' %}"
                 class="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition inline-block">
-                 Volver a mis órdenes
+                 {% trans "Volver a mis órdenes" %}
             </a>
         </div>
     </main>

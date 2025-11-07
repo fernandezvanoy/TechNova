@@ -1,11 +1,13 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:'es'|slice:':2' }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Producto - TechNova</title>
+    <title>{% trans "Nuevo producto - TechNova" %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap"
@@ -15,7 +17,7 @@
 <body class="bg-black text-gray-200">
 
     <div class="fixed inset-0 -z-10">
-        <img src="{% static 'productos/img/setup2.png' %}" alt="Setup Gamer" class="w-full h-full object-cover">
+        <img src="{% static 'productos/img/setup2.png' %}" alt="{% trans 'Setup gamer' %}" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-black/70"></div>
     </div>
 
@@ -24,44 +26,46 @@
 
     <!-- Contenedor Principal -->
     <main class="w-full max-w-4xl p-8 bg-gray-900/80 backdrop-blur-md rounded-3xl shadow-2xl mx-auto mt-16">
-        <h2 class="text-3xl font-bold text-white mb-8 font-['Orbitron'] text-center">Nuevo Producto</h2>
+        <h2 class="text-3xl font-bold text-white mb-8 font-['Orbitron'] text-center">
+            {% trans "Nuevo producto" %}
+        </h2>
 
         <form method="post" enctype="multipart/form-data" class="space-y-6">
             {% csrf_token %}
 
             <!-- Nombre -->
             <div class="flex flex-col">
-                <label for="id_nombre" class="mb-2 text-gray-300 font-semibold">Nombre</label>
+                <label for="id_nombre" class="mb-2 text-gray-300 font-semibold">{% trans "Nombre" %}</label>
                 {{ form.nombre }}
             </div>
 
             <!-- Descripción -->
             <div class="flex flex-col">
-                <label for="id_descripcion" class="mb-2 text-gray-300 font-semibold">Descripción</label>
+                <label for="id_descripcion" class="mb-2 text-gray-300 font-semibold">{% trans "Descripción" %}</label>
                 {{ form.descripcion }}
             </div>
 
             <!-- Precio y Stock -->
             <div class="flex gap-4">
                 <div class="flex-1 flex flex-col">
-                    <label for="id_precio" class="mb-2 text-gray-300 font-semibold">Precio</label>
+                    <label for="id_precio" class="mb-2 text-gray-300 font-semibold">{% trans "Precio" %}</label>
                     {{ form.precio }}
                 </div>
                 <div class="flex-1 flex flex-col">
-                    <label for="id_stock" class="mb-2 text-gray-300 font-semibold">Stock</label>
+                    <label for="id_stock" class="mb-2 text-gray-300 font-semibold">{% trans "Stock" %}</label>
                     {{ form.stock }}
                 </div>
             </div>
 
             <!-- Imagen -->
             <div class="flex flex-col">
-                <label for="id_imagen" class="mb-2 text-gray-300 font-semibold">Imagen</label>
+                <label for="id_imagen" class="mb-2 text-gray-300 font-semibold">{% trans "Imagen" %}</label>
                 {{ form.imagen }}
             </div>
 
             <!-- Categorías -->
             <div class="flex flex-col">
-                <span class="mb-2 text-gray-300 font-semibold">Categorías</span>
+                <span class="mb-2 text-gray-300 font-semibold">{% trans "Categorías" %}</span>
                 <div class="flex flex-wrap gap-2">
                     {% for checkbox in form.categorias %}
                     <label
@@ -76,15 +80,16 @@
             <!-- Botón publicar -->
             <button type="submit"
                 class="w-full py-3 bg-gray-700 text-white font-semibold rounded-xl hover:bg-gray-600 transition shadow-md">
-                Publicar Producto
+                {% trans "Publicar producto" %}
             </button>
         </form>
 
         <div class="mt-6 text-center">
-            <a href="{% url 'home' %}" class="text-gray-400 hover:text-white underline"> Volver al inicio</a>
+            <a href="{% url 'home' %}" class="text-gray-400 hover:text-white underline">
+                {% trans "Volver al inicio" %}
+            </a>
         </div>
     </main>
 
 </body>
-
 </html>

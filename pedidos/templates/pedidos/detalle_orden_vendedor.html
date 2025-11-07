@@ -1,10 +1,12 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:'es'|slice:':2' }}">
 
 <head>
     <meta charset="UTF-8">
-    <title>Detalle de Orden #{{ orden.id }} - Vendedor</title>
+    <title>{% blocktrans with order_id=orden.id %}Detalle de orden #{{ order_id }} - Vendedor{% endblocktrans %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
@@ -18,15 +20,17 @@
     <main class="max-w-4xl mx-auto mt-16 p-8 bg-gray-900/80 backdrop-blur-md rounded-3xl shadow-2xl">
         
         <!-- Titulo de la Orden -->
-        <h2 class="text-3xl font-bold text-white mb-8 text-center">Orden #{{ orden.id }}</h2>
+        <h2 class="text-3xl font-bold text-white mb-8 text-center">
+            {% blocktrans with order_id=orden.id %}Orden #{{ order_id }}{% endblocktrans %}
+        </h2>
 
         <!-- Tabla de Productos -->
         <div class="overflow-x-auto">
             <table class="min-w-full border-collapse text-left">
                 <thead>
                     <tr class="bg-gray-800/80 text-gray-200">
-                        <th class="px-4 py-2 font-semibold">Producto</th>
-                        <th class="px-4 py-2 font-semibold">Cantidad</th>
+                        <th class="px-4 py-2 font-semibold">{% trans "Producto" %}</th>
+                        <th class="px-4 py-2 font-semibold">{% trans "Cantidad" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,14 +48,14 @@
         <div class="mt-6 text-center">
             {% if confirmacion.confirmado %}
                 <!-- Mensaje Si Ya Se Confirmó -->
-                <p class="text-green-500 font-bold text-lg">✅ Ya confirmaste esta orden.</p>
+                <p class="text-green-500 font-bold text-lg">✅ {% trans "Ya confirmaste esta orden." %}</p>
             {% else %}
                 <!-- Formulario Para Confirmar el Envio -->
                 <form method="post" action="{% url 'confirmar_orden_vendedor' orden.id %}">
                     {% csrf_token %}
                     <button type="submit"
                         class="px-6 py-3 bg-gray-700 text-white font-bold rounded-lg hover:bg-gray-600 transition">
-                        Confirmar envío
+                        {% trans "Confirmar envío" %}
                     </button>
                 </form>
             {% endif %}
@@ -61,7 +65,7 @@
         <div class="text-center mt-6">
             <a href="{% url 'ordenes_vendedor' %}"
                class="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition inline-block">
-               Volver a órdenes pendientes
+               {% trans "Volver a órdenes pendientes" %}
             </a>
         </div>
     </main>

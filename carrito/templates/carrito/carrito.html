@@ -1,10 +1,10 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|default:'es' }}">
 
 <head>
     <meta charset="UTF-8">
-    <title>Mi Carrito - TechNova</title>
+    <title>{% trans "Mi Carrito - TechNova" %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@300;400;700&display=swap"
@@ -16,21 +16,19 @@
     <!-- Navbar -->
     {% include 'navbar.html' %}
 
-    
-
     <!-- Contenedor principal -->
     <main class="max-w-6xl mx-auto p-6 md:p-10">
-        <h1 class="text-4xl font-bold text-white mb-8 text-center">🛒 Mi Carrito</h1>
+        <h1 class="text-4xl font-bold text-white mb-8 text-center">🛒 {% trans "Mi Carrito" %}</h1>
 
         {% if carrito.items.exists %}
         <div class="overflow-x-auto">
             <table class="min-w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-gray-900/90 text-gray-200">
-                        <th class="px-4 py-3">Producto</th>
-                        <th class="px-4 py-3">Cantidad</th>
-                        <th class="px-4 py-3">Subtotal</th>
-                        <th class="px-4 py-3">Acciones</th>
+                        <th class="px-4 py-3">{% trans "Producto" %}</th>
+                        <th class="px-4 py-3">{% trans "Cantidad" %}</th>
+                        <th class="px-4 py-3">{% trans "Subtotal" %}</th>
+                        <th class="px-4 py-3">{% trans "Acciones" %}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-700">
@@ -44,7 +42,7 @@
                                 {% csrf_token %}
                                 <button type="submit"
                                     class="px-3 py-1 bg-red-600 text-white font-bold rounded hover:bg-red-500 transition">
-                                    Eliminar
+                                    {% trans "Eliminar" %}
                                 </button>
                             </form>
                         </td>
@@ -56,28 +54,29 @@
 
         <!-- Total del Carrito y Confirmar Compra -->
         <div class="mt-6 flex flex-col md:flex-row justify-between items-center">
-            <p class="text-xl font-bold text-white">Total: 💲 {{ carrito.total }}</p>
+            <p class="text-xl font-bold text-white">
+                {% blocktrans with total=carrito.total %}Total: 💲 {{ total }}{% endblocktrans %}
+            </p>
             <form method="post" action="{% url 'confirmar_compra' %}" class="mt-4 md:mt-0">
                 {% csrf_token %}
                 <button type="submit"
                     class="px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-500 transition">
-                    Confirmar Compra
+                    {% trans "Confirmar compra" %}
                 </button>
             </form>
         </div>
 
         {% else %}
-        <p class="text-center text-gray-400 text-lg mt-10">Tu carrito está vacío.</p>
+        <p class="text-center text-gray-400 text-lg mt-10">{% trans "Tu carrito está vacío." %}</p>
         {% endif %}
 
-        <!-- Boton -->
+        <!-- Botón -->
         <div class="mt-10 text-center">
-            <a href="{% url 'home' %}" class="text-white hover:text-gray-300"> Seguir Comprando</a>
+            <a href="{% url 'home' %}" class="text-white hover:text-gray-300">
+                {% trans "Seguir comprando" %}
+            </a>
         </div>
     </main>
 
-    
-
 </body>
-
 </html>

@@ -1,10 +1,12 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:'es'|slice:':2' }}">
 
 <head>
     <meta charset="UTF-8">
-    <title>Mis Órdenes - TechNova</title>
+    <title>{% blocktrans %}Mis órdenes - TechNova{% endblocktrans %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
@@ -13,14 +15,14 @@
 
     <!-- Fondo de Imagen  -->
     <div class="fixed inset-0 -z-10">
-        <img src="{% static 'productos/img/setup3.png' %}" alt="Setup Gamer" class="w-full h-full object-cover">
+        <img src="{% static 'productos/img/setup3.png' %}" alt="{% trans 'Setup gamer' %}" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-black/70"></div> <!-- Oscurece la imagen -->
     </div>
 
     <!-- Navbar-->
     {% include 'navbar.html' %}
 
-    <h1 class="text-4xl font-bold text-center my-8">Mis Compras</h1>
+    <h1 class="text-4xl font-bold text-center my-8">{% trans "Mis compras" %}</h1>
 
     <!-- Lista de Ordenes -->
     {% if ordenes %}
@@ -31,9 +33,15 @@
             
             <!-- Informacion de la Orden -->
             <div>
-                <p class="font-semibold text-lg">Orden #{{ orden.id }}</p>
-                <p>Estado: <span class="font-bold">{{ orden.estado }}</span></p>
-                <p>Total: ${{ orden.total }}</p>
+                <p class="font-semibold text-lg">
+                    {% blocktrans with order_id=orden.id %}Orden #{{ order_id }}{% endblocktrans %}
+                </p>
+                <p>
+                    {% trans "Estado:" %} <span class="font-bold">{{ orden.estado }}</span>
+                </p>
+                <p>
+                    {% trans "Total:" %} ${{ orden.total }}
+                </p>
             </div>
 
             <!-- Botones de Accion -->
@@ -41,18 +49,18 @@
                 <!-- Ver detalles siempre disponible -->
                 <a href="{% url 'detalle_orden' orden.id %}"
                     class="px-4 py-2 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition">
-                    Ver detalle
+                    {% trans "Ver detalle" %}
                 </a>
 
                 <!-- Solo Si la Orden Está Pendiente -->
                 {% if orden.estado == "pendiente" %}
                 <a href="{% url 'eliminar_orden' orden.id %}"
                     class="px-4 py-2 bg-red-600 text-white font-bold rounded-lg hover:bg-red-500 transition">
-                    Eliminar
+                    {% trans "Eliminar" %}
                 </a>
                 <a href="{% url 'datos_envio' orden.id %}"
                     class="px-4 py-2 bg-gray-800 text-white font-bold rounded-lg hover:bg-gray-700 transition">
-                    Continuar
+                    {% trans "Continuar" %}
                 </a>
                 {% endif %}
             </div>
@@ -61,21 +69,20 @@
     </ul>
     {% else %}
     <!-- Mensaje Si No Hay Ordenes -->
-    <p class="text-center text-gray-400 mt-12">No tienes órdenes aún.</p>
+    <p class="text-center text-gray-400 mt-12">{% trans "No tienes órdenes aún." %}</p>
     {% endif %}
 
     <!-- Enlaces Finales -->
     <div class="text-center mt-8">
         <a href="{% url 'ver_carrito' %}"
             class="px-6 py-3 bg-gray-800 text-white font-bold rounded-lg hover:bg-gray-700 transition inline-block mr-4">
-            🛒 Volver al carrito
+            🛒 {% trans "Volver al carrito" %}
         </a>
         <a href="{% url 'home' %}"
             class="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition inline-block">
-            ⬅ Volver al inicio
+            ⬅ {% trans "Volver al inicio" %}
         </a>
     </div>
 
 </body>
-
 </html>
