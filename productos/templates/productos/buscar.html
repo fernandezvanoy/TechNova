@@ -21,41 +21,54 @@
         <h1 class="text-4xl font-bold text-white font-['Orbitron'] mb-4 text-center">Resultados de búsqueda</h1>
 
         {% if busqueda %}
-            <p class="text-gray-400 text-center mb-6">Mostrando resultados para: "<span class="text-white">{{ busqueda }}</span>"</p>
+        <p class="text-gray-400 text-center mb-6">Mostrando resultados para: "<span class="text-white">{{busqueda}}</span>"</p>
         {% endif %}
 
         <!-- Se Muestran Productos -->
         {% if productos %}
-            <div class="grid gap-6 md:grid-cols-3 sm:grid-cols-2">
-                {% for producto in productos %}
-                    <div class="bg-gray-800/80 rounded-2xl p-4 shadow-lg hover:shadow-white/20 transition transform hover:scale-105 flex flex-col items-center text-center">
-                        <a href="{% url 'producto_especifico' producto.pk %}" class="w-full">
-                            {% if producto.imagen %}
-                                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="rounded-xl w-full h-48 object-cover mb-4">
-                            {% else %}
-                                <div class="bg-gray-700 w-full h-48 rounded-xl mb-4 flex items-center justify-center text-gray-400">
-                                    Sin imagen
-                                </div>
-                            {% endif %}
-                            <h3 class="text-xl font-bold text-white mb-2">{{ producto.nombre }}</h3>
-                        </a>
-                        <p class="text-gray-300 font-semibold">💲 {{ producto.precio }}</p>
+        <div class="grid gap-6 md:grid-cols-3 sm:grid-cols-2">
+            {% for producto in productos %}
+            <div
+                class="bg-gray-800/80 rounded-2xl p-4 shadow-lg hover:shadow-white/20 transition transform hover:scale-105 flex flex-col items-center text-center">
+                <a href="{% url 'producto_especifico' producto.pk %}" class="w-full">
+                    {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}"
+                        class="rounded-xl w-full h-48 object-cover mb-4">
+                    {% else %}
+                    <div class="bg-gray-700 w-full h-48 rounded-xl mb-4 flex items-center justify-center text-gray-400">
+                        Sin imagen
                     </div>
-                {% endfor %}
+                    {% endif %}
+                    <h3 class="text-xl font-bold text-white mb-2">{{ producto.nombre }}</h3>
+                </a>
+                <p class="text-gray-300 font-semibold">💲 {{ producto.precio }}</p>
             </div>
+            {% endfor %}
+        </div>
         {% else %}
-            <p class="text-center text-gray-400 mt-6">No se encontraron productos</p>
+        <p class="text-center text-gray-400 mt-6">No se encontraron productos</p>
         {% endif %}
 
         <!-- Boton Volver Inicio -->
         <div class="text-center mt-8">
-            <a href="{% url 'home' %}" class="px-6 py-3 bg-gray-700 text-white font-bold rounded-xl shadow hover:bg-gray-600 transition-all duration-300">
-                 Volver al inicio
+            <a href="{% url 'home' %}"
+                class="px-6 py-3 bg-gray-700 text-white font-bold rounded-xl shadow hover:bg-gray-600 transition-all duration-300">
+                Volver al inicio
             </a>
         </div>
+
+        <!-- Botón a Filtros avanzados -->
+        <div class="text-center mt-8">
+            <a href="{% url 'buscar_filtros' %}{% if busqueda %}?q={{ busqueda|urlencode }}{% endif %}"
+                class="px-6 py-3 bg-gray-700 text-white font-bold rounded-xl shadow hover:bg-gray-600 transition-all duration-300">
+                Filtros avanzados
+            </a>
+        </div>
+
+
     </main>
 
-    
+
 
 </body>
 

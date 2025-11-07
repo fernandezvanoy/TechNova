@@ -43,3 +43,11 @@ class ReseñaForm(forms.ModelForm):
                 "placeholder": "Escribe tu opinión..."  # Mensaje guía para el usuario
             }),
         }
+
+class FiltroCategoriasForm(forms.Form):
+    categorias = forms.ModelMultipleChoiceField(
+        label="Categorías",
+        queryset=CategoriaProducto.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )

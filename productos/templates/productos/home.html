@@ -125,4 +125,51 @@
 
 </body>
 
+<!-- Botón flotante -->
+<button id="ai-helper" class="fixed bottom-6 right-6 px-4 py-3 rounded-xl bg-gray-700 text-white shadow hover:bg-gray-600">
+  Sugerencias
+</button>
+
+<!-- Panel -->
+<div id="ai-panel" class="hidden fixed bottom-24 right-6 w-96 bg-gray-800 text-gray-100 rounded-2xl p-4 border border-gray-700">
+  <div class="flex gap-2">
+    <input id="ai-q" class="flex-1 px-3 py-2 rounded-xl bg-gray-900 border border-gray-700" placeholder="¿Qué buscas?">
+    <button id="ai-send" class="px-3 py-2 rounded-xl bg-gray-700">Ir</button>
+  </div>
+  <div class="mt-3 text-xs text-gray-400">Tip: también puedes filtrar por presupuesto y categorías con el botón de filtros.</div>
+  <div id="ai-out" class="mt-4 space-y-3 text-sm"></div>
+</div>
+
+<script>
+  const panel = document.getElementById("ai-panel");
+  document.getElementById("ai-helper").onclick = () => panel.classList.toggle("hidden");
+
+  document.getElementById("ai-send").onclick = async () => {
+    const message = document.getElementById("ai-q").value.trim();
+    if (!message) return;
+
+    const res = await fetch("/api/recommend/simple", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ message, limit: 6 })
+    });
+    const data = await res.json();
+
+    const out = document.getElementById("ai-out");
+    out.innerHTML = (data.items || []).map(it => `
+      <a href="${it.url}" class="block p-3 rounded-xl bg-gray-900 border border-gray-700 hover:border-gray-500">
+        <div class="flex gap-3">
+          ${it.imagen ? `<img src="${it.imagen}" class="w-16 h-16 object-cover rounded-lg">` : ""}
+          <div>
+            <div class="font-semibold">${it.nombre}</div>
+            <div class="text-gray-400">$ ${it.precio}</div>
+            <div class="text-gray-500">${(it.categorias || []).join(", ")}</div>
+          </div>
+        </div>
+      </a>
+    `).join("") || "<div>No encontré coincidencias.</div>";
+  };
+</script>
+
+
 </html>

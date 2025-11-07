@@ -10,7 +10,6 @@ urlpatterns = [
     path("usuarios/", include("usuarios.urls")),
     path("ordenes/", include("pedidos.urls")),
     path('carrito/', include('carrito.urls')),
-
 ]
 
 if settings.DEBUG:

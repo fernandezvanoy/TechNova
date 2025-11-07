@@ -5,6 +5,8 @@ from .models import Producto, CategoriaProducto
 from pedidos.models import Orden, ItemOrden
 from carrito.models import Carrito, ItemCarrito
 from .forms import ProductoForm, ReseñaForm
+from django.shortcuts import render
+from django.db.models import Q
 import random
 
 
@@ -122,17 +124,68 @@ def mis_productos(request):
     return render(request, "productos/mis_productos.html", {"productos": productos})
 
 
-# Vista para buscar productos por nombre
-def buscar_productos(request):
-    query = request.GET.get('q')  # Toma el texto de búsqueda
-    productos = []
-    if query:
-        productos = Producto.objects.filter(nombre__icontains=query)  # Filtra productos que contengan la búsqueda
 
-    return render(request, 'productos/buscar.html', {
-        'productos': productos,
-        'busqueda': query
+
+from urllib.parse import urlencode
+from django.shortcuts import render, redirect
+from django.db.models import Q
+from .models import Producto, CategoriaProducto
+from .forms import FiltroCategoriasForm
+
+# RESULTADOS: solo busca por nombre y ahora acepta múltiples categorías por GET (?categorias=1&categorias=3)
+def buscar_productos(request):
+    q = (request.GET.get("q") or "").strip()
+    categorias_ids = request.GET.getlist("categorias")  # múltiple
+    qs = Producto.objects.select_related("vendedor").prefetch_related("categorias")
+
+    if q:
+        qs = qs.filter(nombre__icontains=q)
+
+    if categorias_ids:
+        for cid in categorias_ids:
+            qs = qs.filter(categorias=cid)
+
+
+    # orden por recientes
+    qs = qs.order_by("-id")
+
+    contexto = {
+        "busqueda": q,
+        "productos": qs,
+        "categorias_seleccionadas": [int(x) for x in categorias_ids if x.isdigit()],
+    }
+    return render(request, "productos/buscar.html", contexto)
+
+
+# Vista para los filtros de busqueda
+def buscar_filtros(request):
+    q = (request.GET.get("q") or "").strip()
+    seleccion_inicial = request.GET.getlist("categorias")
+
+    form = FiltroCategoriasForm(initial={
+        "categorias": seleccion_inicial
     })
+
+    if request.method == "POST":
+        form = FiltroCategoriasForm(request.POST)
+        if form.is_valid():
+            categorias = form.cleaned_data.get("categorias") or []
+            params = []
+            if q:
+                params.append(("q", q))
+            for c in categorias:
+                params.append(("categorias", str(c.id)))
+            query = urlencode(params, doseq=True)
+            return redirect(f"/buscar/?{query}" if query else "/buscar/")
+
+    contexto = {
+        "form": form,
+        "busqueda": q,
+        "categorias_actuales": seleccion_inicial,
+    }
+    return render(request, "productos/buscar_filtros.html", contexto)
+
+
 
 # IMPLEMENTACIOPN API
 from rest_framework import viewsets
