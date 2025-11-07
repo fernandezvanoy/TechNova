@@ -26,10 +26,10 @@ jobs:
       - name: Build and push image
         run: |
           IMAGE="${{ secrets.DOCKERHUB_USERNAME }}/technova:${{ github.sha }}"
-          docker build -t $IMAGE .
-          docker tag $IMAGE ${{ secrets.DOCKERHUB_USERNAME }}/technova:latest
-          docker push $IMAGE
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/technova:latest
+          docker build -t "$IMAGE" .
+          docker tag "$IMAGE" "${{ secrets.DOCKERHUB_USERNAME }}/technova:latest"
+          docker push "$IMAGE"
+          docker push "${{ secrets.DOCKERHUB_USERNAME }}/technova:latest"
 
       - name: Output image name
         run: echo "Pushed image: ${{ secrets.DOCKERHUB_USERNAME }}/technova:latest"
