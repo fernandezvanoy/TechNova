@@ -32,4 +32,4 @@ jobs:
           docker push "${{ secrets.DOCKERHUB_USERNAME }}/technova:latest"
 
       - name: Output image name
-        run: echo "Pushed image: ${{ secrets.DOCKERHUB_USERNAME }}/technova:latest"
+        run: echo "Image pushed successfully to DockerHub"
